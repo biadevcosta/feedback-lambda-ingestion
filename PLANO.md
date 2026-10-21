@@ -9,16 +9,16 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 
 ### Fase 3 - Ingestão
 
-- [ ] **3.5** handler.py: validar descricao e nota (0 a 10), calcular a urgência, ler o usuarioId do token e gravar no DynamoDB
+- [ ] **3.5** IngestionHandler.java: validar description e score (0 a 10), calcular a urgency, ler o userId do token e gravar no DynamoDB
   - Validar: Teste local passa com entrada válida e inválida
   - Depende de: 0.5
   - Obs: Sugestão de urgência: nota 0-3 alta, 4-6 média, 7-10 baixa
 
-- [ ] **3.6** Testes unitários (pytest) para a validação e a regra de urgência
-  - Validar: pytest verde
+- [ ] **3.6** Testes unitários (JUnit5 + Mockito) para a validação e a regra de urgency
+  - Validar: mvn test verde
   - Depende de: 3.5
 
-- [ ] **3.7** Workflow de CI/CD: testes, zip e aws lambda update-function-code via OIDC
+- [ ] **3.7** Workflow de CI/CD: mvn test, mvn package (jar) e aws lambda update-function-code via OIDC
   - Validar: Push na main atualiza a função
   - Depende de: 3.4, 3.6
   - Obs: Este workflow serve de modelo para os outros dois repositórios
