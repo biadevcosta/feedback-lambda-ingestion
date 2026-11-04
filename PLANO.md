@@ -1,4 +1,4 @@
-# Plano - feedback-lambda-ingestao
+# Plano - feedback-lambda-ingestion
 
 Tarefas extraídas da planilha de planejamento. Siga a ordem e respeite "Depende de".
 Ao validar uma tarefa, troque `[ ]` por `[x]`.
@@ -34,5 +34,5 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 Confirme com o time que estas tarefas já foram concluídas antes de começar.
 
 - **0.5** (grupo): Definir convenções: região, prefixo de nomes (feedback-), tags e nomes das 3 funções
-- **3.4** (feedback-infra): Role OIDC do repositório feedback-lambda-ingestao, só com lambda:UpdateFunctionCode nesta função
+- **3.4** (feedback-infra): Role OIDC do repositório feedback-lambda-ingestion, só com lambda:UpdateFunctionCode nesta função
 - **3.8** (grupo): Teste ponta a ponta: sem token (401), com token (grava) e nota fora do intervalo (400)
