@@ -1,6 +1,6 @@
-package com.feedback.ingestion;
+package com.feedback.ingestion.domain.model;
 
-/** Urgency level derived from the score; stored in DynamoDB as its lowercase value. */
+/** Urgency level derived from the score; stored as its lowercase value. */
 public enum Urgency {
     HIGH("high"),
     MEDIUM("medium"),
@@ -16,8 +16,8 @@ public enum Urgency {
         return value;
     }
 
-    /** 0 to 3 is high, 4 to 6 is medium, 7 to 10 is low. Expects a score already validated. */
-    public static Urgency fromScore(int score) {
+    /** 0 to 3 is high, 4 to 6 is medium, 7 to 10 is low. */
+    static Urgency fromScore(int score) {
         if (score <= 3) {
             return HIGH;
         }
