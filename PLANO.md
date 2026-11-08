@@ -9,12 +9,12 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 
 ### Fase 3 - Ingestão
 
-- [ ] **3.5** IngestionHandler.java: validar description e score (0 a 10), calcular a urgency, ler o userId do token e gravar no DynamoDB
+- [x] **3.5** IngestionHandler.java: validar description e score (0 a 10), calcular a urgency, ler o userId do token e gravar no DynamoDB
   - Validar: Teste local passa com entrada válida e inválida
   - Depende de: 0.5
   - Obs: Sugestão de urgência: nota 0-3 alta, 4-6 média, 7-10 baixa
 
-- [ ] **3.6** Testes unitários (JUnit5 + Mockito) para a validação e a regra de urgency
+- [x] **3.6** Testes unitários (JUnit5 + Mockito) para a validação e a regra de urgency
   - Validar: mvn test verde
   - Depende de: 3.5
 
