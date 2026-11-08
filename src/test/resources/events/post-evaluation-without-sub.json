@@ -1,0 +1,32 @@
+{
+  "version": "2.0",
+  "routeKey": "POST /evaluations",
+  "rawPath": "/evaluations",
+  "rawQueryString": "",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "requestContext": {
+    "accountId": "123456789012",
+    "apiId": "abc123",
+    "authorizer": {
+      "jwt": {
+        "claims": {},
+        "scopes": null
+      }
+    },
+    "http": {
+      "method": "POST",
+      "path": "/evaluations",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "203.0.113.10",
+      "userAgent": "curl/8.0"
+    },
+    "requestId": "request-2",
+    "routeKey": "POST /evaluations",
+    "stage": "$default",
+    "timeEpoch": 1794187800000
+  },
+  "body": "{\"description\":\"Great class\",\"score\":7}",
+  "isBase64Encoded": false
+}

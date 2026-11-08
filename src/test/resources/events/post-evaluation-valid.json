@@ -1,0 +1,38 @@
+{
+  "version": "2.0",
+  "routeKey": "POST /evaluations",
+  "rawPath": "/evaluations",
+  "rawQueryString": "",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "requestContext": {
+    "accountId": "123456789012",
+    "apiId": "abc123",
+    "authorizer": {
+      "jwt": {
+        "claims": {
+          "sub": "11111111-2222-3333-4444-555555555555",
+          "cognito:groups": "[students]"
+        },
+        "scopes": null
+      }
+    },
+    "domainName": "abc123.execute-api.sa-east-1.amazonaws.com",
+    "domainPrefix": "abc123",
+    "http": {
+      "method": "POST",
+      "path": "/evaluations",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "203.0.113.10",
+      "userAgent": "curl/8.0"
+    },
+    "requestId": "request-1",
+    "routeKey": "POST /evaluations",
+    "stage": "$default",
+    "time": "09/Nov/2026:01:30:00 +0000",
+    "timeEpoch": 1794187800000
+  },
+  "body": "{\"description\":\"Great class\",\"score\":7}",
+  "isBase64Encoded": false
+}

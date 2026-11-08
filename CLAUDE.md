@@ -32,8 +32,8 @@ Tabela `Evaluations`, chave `evaluationId` (string, UUID). Atributos: `userId` (
 
 ## Esta função
 Recebe `POST /evaluations` (API Gateway HTTP API, payload v2, JWT já validado pelo authorizer) e grava no DynamoDB.
-- Estrutura: `pom.xml`, `src/main/java/com/feedback/ingestion/IngestionHandler.java` (implementa `RequestHandler<APIGatewayV2HTTPEvent, APIGatewayV2HTTPResponse>`), `src/test/java/...`, `.github/workflows/ci-cd.yml` e `README.md`.
-- Dependências: `aws-lambda-java-core`, `aws-lambda-java-events`, AWS SDK v2 (`dynamodb`), `maven-shade-plugin` (gera o uber jar do deploy).
+- Arquitetura e testes: seguir a skill `java-lambda-standard` (hexagonal: `domain/`, `application/`, `adapter/in/apigateway/`, `adapter/out/dynamodb/`, `config/`). `IngestionHandler.java` na raiz do pacote só faz o bootstrap (é a classe que o Terraform referencia). Build com `./mvnw verify` (testes, ArchUnit e JaCoCo com mínimo de 80%).
+- Dependências: `aws-lambda-java-core`, `aws-lambda-java-events`, AWS SDK v2 (`dynamodb` com `url-connection-client`), `jackson-databind` (só no adaptador de entrada), `maven-shade-plugin` (gera o uber jar do deploy). Testes: JUnit5, Mockito, AssertJ, ArchUnit e `aws-lambda-java-serialization`.
 - Variável de ambiente (definida no Terraform): `TABLE_NAME`.
 - Entrada: body JSON com `description` (texto não vazio, máximo de 1000 caracteres, sugestão) e `score` (inteiro de 0 a 10; rejeitar texto, booleano e decimal).
 - `userId` vem de `event.getRequestContext().getAuthorizer().getJwt().getClaims().get("sub")`.
@@ -41,4 +41,4 @@ Recebe `POST /evaluations` (API Gateway HTTP API, payload v2, JWT já validado p
 - Grava: `evaluationId` (`UUID.randomUUID()`), `userId`, `description`, `score`, `urgency`, `submittedAt` e `day`.
 - Permissão da função: só `dynamodb:PutItem`. Dependências mínimas para manter o jar pequeno (custo de cold start).
 - Esteira `ci-cd.yml`: no PR roda `mvn test`; no push na main roda `mvn test`, `mvn package` (jar via shade) e `aws lambda update-function-code` na função `feedback-ingestion` via OIDC (`permissions: id-token: write`; role na variável de repositório `AWS_ROLE_ARN`).
-- Testes (JUnit5 + Mockito, mockando `DynamoDbClient`): scores 0, 3, 4, 6, 7 e 10; scores 11 e -1; score como texto; `description` vazia; evento sem `sub`.
+- Testes por camada (padrão da skill): domínio puro (scores 0 a 10 e limites, `description` vazia/longa, `day` em UTC-3); caso de uso com o repositório mockado; mapper e controller com eventos reais de `src/test/resources/events/` (score como texto, booleano e decimal, evento sem `sub`, erro 500 sem detalhes, logs sem dados pessoais); repositório com `DynamoDbClient` mockado.
