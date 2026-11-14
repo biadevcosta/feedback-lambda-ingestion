@@ -9,16 +9,16 @@ Administrators receive an urgent-feedback email (low scores) and a weekly report
 
 | Repository | Responsibility |
 |---|---|
-| [feedback-infra](../feedback-infra) | Terraform for all infrastructure |
+| [feedback-infra](https://github.com/biadevcosta/feedback-infra) | Terraform for all infrastructure |
 | **feedback-lambda-ingestion** (this one) | Receives the evaluation and writes it to DynamoDB |
-| [feedback-lambda-notification](../feedback-lambda-notification) | Notifies admins by email when urgency is high |
-| [feedback-lambda-report](../feedback-lambda-report) | Generates and sends the weekly report |
+| [feedback-lambda-notification](https://github.com/biadevcosta/feedback-lambda-notification) | Notifies admins by email when urgency is high |
+| [feedback-lambda-report](https://github.com/biadevcosta/feedback-lambda-report) | Generates and sends the weekly report |
 
 ## Architecture
 
 ![AWS architecture and flows](docs/architecture.png)
 
-Diagram source: [`docs/architecture.drawio`](../feedback-infra/docs/architecture.drawio) in feedback-infra.
+Diagram source: [`docs/architecture.drawio`](https://github.com/biadevcosta/feedback-infra/blob/main/docs/architecture.drawio) in feedback-infra.
 
 ## What it does
 
